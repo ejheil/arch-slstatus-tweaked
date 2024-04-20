@@ -2,13 +2,13 @@
 
 pkgname=slstatus
 pkgver=1.0
-pkgrel=1
+pkgrel=2
 pkgdesc='A status monitor for window managers that use WM_NAME or stdin to fill the status bar'
 arch=(any)
 url='http://tools.suckless.org/slstatus/'
 depends=('libx11')
 conflicts=('slstatus-git')
-license=('ISC')
+license=('custom:ISC')
 source=('https://dl.suckless.org/tools/slstatus-1.0.tar.gz'
         'config.h')
 sha256sums=('6d6d0a16c08dd9d211172c30c4720701267a3f40cdc938db3f386f6a2b6cff54'
@@ -27,8 +27,7 @@ build() {
 }
 
 package() {
-    install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/$pkgname/LICENSE"
-
     cd "$srcdir/$pkgname-$pkgver"
+    install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/$pkgname/LICENSE"
     make PREFIX='/usr' DESTDIR="${pkgdir}" install
 }
